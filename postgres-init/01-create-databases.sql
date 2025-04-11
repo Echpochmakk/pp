@@ -1,0 +1,2 @@
+CREATE DATABASE scrapperdb;
+CREATE DATABASE bot;

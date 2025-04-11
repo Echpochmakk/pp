@@ -1,0 +1,38 @@
+app:
+  github-token: ${APP_GITHUB_TOKEN}
+  stackoverflow:
+    key: ${APP_STACKOVERFLOW_KEY}
+    access-token: ${APP_STACKOVERFLOW_ACCESS_TOKEN}
+
+bot:
+  notification:
+    url: ${BOT_NOTIFICATION_URL}
+
+spring:
+  datasource:
+    url: ${SCRAPPER_DATASOURCE_URL}
+    username: ${SCRAPPER_DATASOURCE_USERNAME}
+    password: ${SCRAPPER_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/migrations/root.xml
+
+  jpa:
+    open-in-view: false
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+
+server:
+  port: ${SCRAPPER_SERVER_PORT}
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+  actuator:
+    enabled: false
+  enable-multiple-api-docs: false

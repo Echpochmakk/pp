@@ -1,0 +1,53 @@
+app:
+  telegram-token: ${TELEGRAM_BOT_TOKEN}
+
+scrapper:
+  link:
+    url: ${SCRAPPER_LINK_URL}
+
+bot:
+  notification:
+    url: ${BOT_NOTIFICATION_URL}
+
+spring:
+  application:
+    name: Bot
+  datasource:
+    url: ${BOT_DATASOURCE_URL}
+    username: ${BOT_DATASOURCE_USERNAME}
+    password: ${BOT_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    change-log: classpath:/migrations/root.xml
+  jpa:
+    open-in-view: false
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+
+access-type: JPA  # или HIBERNATE, или SQL
+
+scheduler:
+  fixed-rate: 5000
+
+server:
+  port: ${BOT_SERVER_PORT}
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+  actuator:
+    enabled: false
+  enable-multiple-api-docs: false
+
+github:
+  api:
+    base-url: https://api.github.com
+
+logging:
+  level:
+    org.springframework: INFO
+    com.example.telegrambot: DEBUG
