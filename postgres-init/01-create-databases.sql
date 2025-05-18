@@ -1,2 +1,2 @@
-CREATE DATABASE scrapperdb;
 CREATE DATABASE bot;
+CREATE DATABASE scrapperdb;
