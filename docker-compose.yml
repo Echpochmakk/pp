@@ -13,28 +13,28 @@ services:
       - app-network
 
   bot:
-    build: ./bot
+    build:
+      context: ./bot
+    container_name: bot
     env_file: .env
-    environment:
-      - SPRING_DATASOURCE_URL=${BOT_DATASOURCE_URL}
-      - SPRING_DATASOURCE_USERNAME=${BOT_DATASOURCE_USERNAME}
-      - SPRING_DATASOURCE_PASSWORD=${BOT_DATASOURCE_PASSWORD}
-    ports:
-      - "${BOT_SERVER_PORT}:${BOT_SERVER_PORT}"
+    volumes:
+      - ./bot:/app
+    working_dir: /app
+    command: python3 main.py
     depends_on:
       - postgres
     networks:
       - app-network
 
-  scrapper:
-    build: ./scrapper
-    env_file: .env
-    environment:
-      - SPRING_DATASOURCE_URL=${SCRAPPER_DATASOURCE_URL}
-      - SPRING_DATASOURCE_USERNAME=${SCRAPPER_DATASOURCE_USERNAME}
-      - SPRING_DATASOURCE_PASSWORD=${SCRAPPER_DATASOURCE_PASSWORD}
-    ports:
-      - "${SCRAPPER_SERVER_PORT}:${SCRAPPER_SERVER_PORT}"
+  scraper:
+    build:
+      context: ./scraper
+      dockerfile: Dockerfile.scraper
+    container_name: scraper
+    volumes:
+      - ./scraper:/app
+    working_dir: /app
+    command: python3 scrapergithub_parser.py
     depends_on:
       - postgres
     networks:
